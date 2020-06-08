@@ -468,3 +468,26 @@ textarea {
   color: #000;
   padding: 0.2em 0;
 }
+
+@font-face {
+  font-family: "Balsamiq";
+  font-display: swap;
+  src: url("../fonts/BalsamiqSans-Regular.woff") format("woff"), url("../fonts/BalsamiqSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Russo";
+  font-display: swap;
+  src: url("../fonts/RussoOne-Regular.woff") format("woff"), url("../fonts/RussoOne-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: Balsamiq, cursive;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 25px;
+}

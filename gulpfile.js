@@ -18,13 +18,14 @@ const path = {
 		css: source_folder + "/scss/style.scss",
 		js: source_folder + "/js/script.js",
 		img: source_folder + "/img/**",
-		fonts: source_folder + "/fonts/*.ttf",
+		fonts: source_folder + "/fonts/**/*.*",
 	},
 	watch: {
 		html: source_folder + "/**/*.html",
 		css: source_folder + "/scss/**/*.scss",
 		js: source_folder + "/js/**/*.js",
 		img: source_folder + "/img/**",
+		fonts: source_folder + "/fonts/**/*.*",
 	},
 	clean: "./" + project_folder + "/",
 };
@@ -41,7 +42,6 @@ const clean_css = require("gulp-clean-css");
 const rename = require("gulp-rename");
 const uglify = require("gulp-uglify-es").default;
 const imagemin = require("gulp-imagemin");
-// const image = require('gulp-image');
 const gulpPngquant = require("gulp-pngquant");
 const imageminMozjpeg = require("imagemin-mozjpeg");
 const webp = require("gulp-webp");
@@ -141,7 +141,7 @@ function fonts() {
 }
 
 gulp.task("otf2ttf", function () {
-	return src([source_folder + "/fonts/*.otf"])
+	return src([source_folder + "/fonts/**/*.otf"])
 		.pipe(
 			fonter({
 				formats: ["ttf"],
@@ -151,9 +151,9 @@ gulp.task("otf2ttf", function () {
 });
 
 function fontsStyle() {
-	let file_content = fs.readFileSync(source_folder + "/scss/fonts.scss");
+	let file_content = fs.readFileSync(source_folder + "/scss/base/_fonts.scss");
 	if (file_content == "") {
-		fs.writeFile(source_folder + "/scss/fonts.scss", "", cb);
+		fs.writeFile(source_folder + "/scss/base/_fonts.scss", "", cb);
 		return fs.readdir(path.build.fonts, function (err, items) {
 			if (items) {
 				let c_fontname;
@@ -162,7 +162,7 @@ function fontsStyle() {
 					fontname = fontname[0];
 					if (c_fontname != fontname) {
 						fs.appendFile(
-							source_folder + "/scss/fonts.scss",
+							source_folder + "/scss/base/_fonts.scss",
 							'@include font("' +
 								fontname +
 								'", "' +
@@ -185,6 +185,7 @@ function watchFiles() {
 	gulp.watch([path.watch.css], css);
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.img], images);
+	gulp.watch([path.watch.fonts], fonts);
 }
 
 function clean() {
