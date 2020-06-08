@@ -1,0 +1,1 @@
+body{font-size:50px;display:-webkit-box;display:-ms-flexbox;display:flex}span{font-size:20px}div{font-size:40px}.img{width:100px;height:80px;background-color:green;background-image:url(../img/arsenall.jpg)}@media (max-width:767px){span{font-size:10px}div{font-size:15px}}.webp .img{background-image:url(../img/arsenall.webp)}
